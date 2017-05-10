@@ -2,7 +2,7 @@ import random
 
 hero = '@'
 hero_x = 0
-level = '..s.b..G.p...$..$..f..hm...r..N.W..$...r....$.D..W.'
+level = '..s.b..G.p...$..$..f..KK.K..r..N.W..$...r....$.D..'
 level = list(level)
 hunger = 0
 money = 0
@@ -14,9 +14,13 @@ food = {'s':('sweets',-7,0),
         'f':('fish',-14,0),
         'r':('rotten beaf',-4,-2),
         'h':('small health potion',0,5),
-        'm':('big health potion',0,10)}      
-
-
+        'm':('big health potion',0,10)}   
+           # name, chance to hit, chance to evade, max damage
+monsters = {'G':('Giant',0.1,.01,12),
+            'N':('Ninja',0.3,.65,4),
+            'W':('Wizard',0.19,.19,1),
+            'D':('Dragon',0.25,.01,22),
+            'K':('Goblin',0.2,.8,1)}   
 while hp > 0:
     for x, char in enumerate(level):
         if x == hero_x:
@@ -60,4 +64,7 @@ while hp > 0:
         print('Money,money,money')
         money+=random.randint(1,30)
         level[hero_x]='.'
-            
+    elif stuff in monsters:
+        print('you fight: ', monsters[stuff][0])
+        level[hero_x]='.'
+                
